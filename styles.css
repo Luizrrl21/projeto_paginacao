@@ -1,49 +1,163 @@
-/* Estilos básicos */
+/* Estilos Gerais */
 body.light {
-    background-color: #fff;
-    color: #000;
+    background-color: #f8f9fa;
+    color: #212529;
 }
 
 body.dark {
-    background-color: #333;
-    color: #fff;
+    background-color: #343a40;
+    color: #f8f9fa;
 }
 
 .content {
     width: 90%;
-    margin: auto;
+    margin: 40px auto;
     text-align: center;
     padding: 20px;
-    box-sizing: border-box; /* Inclui padding na largura total */
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: inherit;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.theme-switcher {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Estilo para o switch (toggle) */
+.theme-switcher input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.slider .icon {
+    position: absolute;
+    color: black;
+    font-size: 16px;
+    line-height: 26px;  /* Garantir alinhamento vertical no centro */
+    text-align: center;
+    width: 100%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input:checked + .slider .dark-icon {
+    display: block;
+    transform: translateX(12px);
+}
+
+input:not(:checked) + .slider .light-icon {
+    display: block;
+    transform: translateX(-12px);
+}
+
+input:checked + .slider .light-icon {
+    display: none;
+}
+
+input:not(:checked) + .slider .dark-icon {
+    display: none;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0 auto;
+    text-align: center;
+    color: inherit;
+}
+
+hr.separator {
+    border: none;
+    height: 1px;
+    background-color: #dee2e6;
+    margin: 20px 0;
+}
+
+#page-indicator {
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 button {
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    width: 30%; /* Botões ocupam 30% da largura do content */
-    max-width: 200px; /* Largura máxima para botões */
+    width: auto;
+    max-width: 200px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #dee2e6;
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 /* Media Queries para Responsividade */
 @media (max-width: 768px) {
     .content {
-        width: 95%; /* Maior percentual da tela em dispositivos menores */
+        width: 95%;
     }
 
     button {
-        font-size: 14px; /* Fonte menor em dispositivos pequenos */
+        font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
     .content {
-        width: 100%; /* Usa toda a largura em dispositivos muito pequenos */
+        width: 100%;
         padding: 10px;
     }
 
     button {
-        font-size: 12px; /* Fonte ainda menor para telas muito pequenas */
+        font-size: 12px;
         padding: 8px 16px;
     }
 }

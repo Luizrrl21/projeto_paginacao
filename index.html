@@ -7,12 +7,25 @@
 </head>
 <body class="light">
     <div class="content">
+        <div class="header">
+            <h1>Roteiro do Shrek</h1>
+            <label class="theme-switcher">
+                <input type="checkbox" id="theme-switch">
+                <span class="slider round">
+                    <span class="icon light-icon">&#9728;</span> <!-- Ícone de sol -->
+                    <span class="icon dark-icon">&#9790;</span> <!-- Ícone de lua -->
+                </span>
+            </label>
+        </div>
+        <hr class="separator">
+        <p id="page-indicator">Página 1 de 3</p>
         <div id="text">
             <!-- Texto será inserido aqui -->
         </div>
-        <button onclick="toggleTheme()">Alternar Tema</button>
-        <button onclick="nextPage()">Próxima Página</button>
-        <button onclick="prevPage()">Página Anterior</button>
+        <div class="navigation-buttons">
+            <button onclick="prevPage()">Página Anterior</button>
+            <button onclick="nextPage()">Próxima Página</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

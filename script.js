@@ -11,8 +11,13 @@ function toggleTheme() {
     body.classList.toggle("light");
 }
 
+document.getElementById('theme-switch').addEventListener('change', function() {
+    toggleTheme();
+});
+
 function updateText() {
     document.getElementById('text').innerText = texts[currentPage];
+    document.getElementById('page-indicator').innerText = `Página ${currentPage + 1} de ${texts.length}`;
 }
 
 function nextPage() {
@@ -70,6 +75,8 @@ function setupMouseEvents() {
     }, false);
 }
 
-updateText(); // Atualiza o texto inicialmente
-setupTouchEvents(); // Configura eventos de toque
-setupMouseEvents(); // Configura eventos de mouse para teste em desktop
+document.addEventListener('DOMContentLoaded', function() {
+    updateText(); // Atualiza o texto inicialmente
+    setupTouchEvents(); // Configura eventos de toque
+    setupMouseEvents(); // Configura eventos de mouse para teste em desktop
+});
