@@ -1,8 +1,8 @@
 let currentPage = 0;
 const texts = [
-    "Texto da página 1. Aqui vai o conteúdo da primeira página.",
-    "Texto da página 2. Aqui vai o conteúdo da segunda página.",
-    "Texto da página 3. Aqui vai o conteúdo da terceira página."
+    "Era uma vez uma linda princesa. Mas ela tinha um encantamento sobre ela de um tipo temeroso que só poderia ser quebrado pelo primeiro beijo do amor verdadeiro.",
+    "Ela foi trancada em um castelo guardado por um terrível dragão flamejante. Muitos bravos cavaleiros tentaram libertá-la dessa horrenda prisão, mas sem sucesso.",
+    "Ela esperava no quarto mais alto do mais alto torre do castelo por seu verdadeiro amor e o primeiro beijo do amor verdadeiro. (Isso não é como eu queria que minha história começasse)."
 ];
 
 function toggleTheme() {
@@ -29,31 +29,47 @@ function prevPage() {
     }
 }
 
-// Função para adicionar suporte a gestos de deslizar
-function handleTouchGestures() {
-    let touchstartX = 0;
-    let touchendX = 0;
+function setupTouchEvents() {
+    const textElement = document.getElementById('text');
+    let startX;
 
-    const slider = document.getElementById('text');
-
-    slider.addEventListener('touchstart', function(event) {
-        touchstartX = event.changedTouches[0].screenX;
+    textElement.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
     }, false);
 
-    slider.addEventListener('touchend', function(event) {
-        touchendX = event.changedTouches[0].screenX;
-        handleGesture();
-    }, false);
+    textElement.addEventListener('touchmove', (e) => {
+        e.preventDefault(); 
+    }, { passive: false });
 
-    function handleGesture() {
-        if (touchendX < touchstartX) {
+    textElement.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) { 
             nextPage();
-        }
-        if (touchendX > touchstartX) {
+        } else if (endX - startX > 50) { 
             prevPage();
         }
-    }
+    }, false);
 }
 
-updateText(); // Inicializa o texto da primeira página
-handleTouchGestures(); // Adiciona os ouvintes de evento de toque
+function setupMouseEvents() {
+    const textElement = document.getElementById('text');
+    let startX;
+
+    textElement.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        e.preventDefault(); // Evitar seleção de texto durante o arrasto
+    }, false);
+
+    textElement.addEventListener('mouseup', (e) => {
+        const endX = e.clientX;
+        if (startX - endX > 50) { 
+            nextPage();
+        } else if (endX - startX > 50) { 
+            prevPage();
+        }
+    }, false);
+}
+
+updateText(); // Atualiza o texto inicialmente
+setupTouchEvents(); // Configura eventos de toque
+setupMouseEvents(); // Configura eventos de mouse para teste em desktop
