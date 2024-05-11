@@ -1,0 +1,49 @@
+/* Estilos básicos */
+body.light {
+    background-color: #fff;
+    color: #000;
+}
+
+body.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.content {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    width: 30%; /* Botões ocupam 30% da largura do content */
+    max-width: 200px; /* Largura máxima para botões */
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .content {
+        width: 95%; /* Maior percentual da tela em dispositivos menores */
+    }
+
+    button {
+        font-size: 14px; /* Fonte menor em dispositivos pequenos */
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        width: 100%; /* Usa toda a largura em dispositivos muito pequenos */
+        padding: 10px;
+    }
+
+    button {
+        font-size: 12px; /* Fonte ainda menor para telas muito pequenas */
+        padding: 8px 16px;
+    }
+}
